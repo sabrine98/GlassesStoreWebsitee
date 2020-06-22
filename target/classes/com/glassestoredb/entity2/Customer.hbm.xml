@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.Customer" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="customer">
+        <id name="customerId" type="int">
+            <column name="customer_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="email" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="email" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="fullname" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="fullname" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="address" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="address" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="city" optimistic-lock="true" type="string" unique="false">
+            <column length="32" name="city" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="country" optimistic-lock="true" type="string" unique="false">
+            <column length="64" name="country" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="phone" optimistic-lock="true" type="string" unique="false">
+            <column length="15" name="phone" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="zipcode" optimistic-lock="true" type="string" unique="false">
+            <column length="24" name="zipcode" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="password" optimistic-lock="true" type="string" unique="false">
+            <column length="16" name="password" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="registerDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="register_date" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="reviews" optimistic-lock="true" sort="unsorted" table="review">
+            <key on-delete="noaction">
+                <column name="customer_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.Review" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="glassesOrders" optimistic-lock="true" sort="unsorted" table="glasses_order">
+            <key on-delete="noaction">
+                <column name="customer_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.GlassesOrder" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

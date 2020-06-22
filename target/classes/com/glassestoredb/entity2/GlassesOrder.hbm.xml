@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.GlassesOrder" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="glasses_order">
+        <id name="orderId" type="int">
+            <column name="order_id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.glassestoredb.entity2.Customer" embed-xml="true" fetch="select" insert="true" name="customer" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="customer_id" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="orderDate" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="order_date" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="shippingAddress" optimistic-lock="true" type="string" unique="false">
+            <column length="256" name="shipping_address" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="recipientName" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="recipient_name" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="recipientPhone" optimistic-lock="true" type="string" unique="false">
+            <column length="15" name="recipient_phone" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="paymentMethod" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="payment_method" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="total" optimistic-lock="true" type="float" unique="false">
+            <column name="total" not-null="true" precision="12" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="status" optimistic-lock="true" type="string" unique="false">
+            <column length="20" name="status" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderDetails" optimistic-lock="true" sort="unsorted" table="order_detail">
+            <key on-delete="noaction">
+                <column name="order_id"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.OrderDetail" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

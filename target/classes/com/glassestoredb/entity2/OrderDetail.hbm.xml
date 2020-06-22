@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.OrderDetail" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="order_detail">
+        <composite-id class="com.glassestoredb.entity2.OrderDetailId" mapped="false" name="id" unsaved-value="undefined">
+            <key-property name="orderId" type="java.lang.Integer">
+                <column name="order_id"/>
+            </key-property>
+            <key-property name="glassesId" type="java.lang.Integer">
+                <column name="glasses_id"/>
+            </key-property>
+            <key-property name="quantity" type="int">
+                <column name="quantity"/>
+            </key-property>
+            <key-property name="subtotal" type="float">
+                <column name="subtotal" precision="12" scale="0"/>
+            </key-property>
+        </composite-id>
+        <many-to-one class="com.glassestoredb.entity2.Glasses" embed-xml="true" fetch="select" insert="false" name="glasses" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="glasses_id"/>
+        </many-to-one>
+        <many-to-one class="com.glassestoredb.entity2.GlassesOrder" embed-xml="true" fetch="select" insert="false" name="glassesOrder" not-found="exception" optimistic-lock="true" unique="false" update="false">
+            <column name="order_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
