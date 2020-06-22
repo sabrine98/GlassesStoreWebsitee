@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.Glasses" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="glasses">
+        <id name="glassesId" type="int">
+            <column name="glasses_id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.glassestoredb.entity2.Category" embed-xml="true" fetch="select" insert="true" name="category" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="category_id" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="title" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="title" not-null="true" unique="true"/>
+        </property>
+        <property generated="never" lazy="false" name="description" optimistic-lock="true" type="string" unique="false">
+            <column name="description" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="image" optimistic-lock="true" type="binary" unique="false">
+            <column name="image" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="price" optimistic-lock="true" type="float" unique="false">
+            <column name="price" not-null="true" precision="12" scale="0"/>
+        </property>
+        <property generated="never" lazy="false" name="publishDate" optimistic-lock="true" type="date" unique="false">
+            <column length="10" name="publish_date" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="lastUpdateTime" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="last_update_time" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="orderDetails" optimistic-lock="true" sort="unsorted" table="order_detail">
+            <key on-delete="noaction">
+                <column name="glasses_id"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.OrderDetail" embed-xml="true" not-found="exception"/>
+        </set>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="reviews" optimistic-lock="true" sort="unsorted" table="review">
+            <key on-delete="noaction">
+                <column name="glasses_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.Review" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

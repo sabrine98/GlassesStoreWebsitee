@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.Category" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="category">
+        <id name="categoryId" type="int">
+            <column name="category_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property generated="never" lazy="false" name="name" optimistic-lock="true" type="string" unique="false">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <set embed-xml="true" fetch="select" inverse="true" lazy="true" mutable="true" name="glasseses" optimistic-lock="true" sort="unsorted" table="glasses">
+            <key on-delete="noaction">
+                <column name="category_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.glassestoredb.entity2.Glasses" embed-xml="true" not-found="exception"/>
+        </set>
+    </class>
+</hibernate-mapping>

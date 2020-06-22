@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 21 juin 2020 05:11:33 by Hibernate Tools 5.3.16.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
+    <class catalog="glassestoredb" dynamic-insert="false" dynamic-update="false" mutable="true" name="com.glassestoredb.entity2.Review" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="review">
+        <id name="reviewId" type="int">
+            <column name="review_id"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="com.glassestoredb.entity2.Customer" embed-xml="true" fetch="select" insert="true" name="customer" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="customer_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="com.glassestoredb.entity2.Glasses" embed-xml="true" fetch="select" insert="true" name="glasses" not-found="exception" optimistic-lock="true" unique="false" update="true">
+            <column name="glasses_id" not-null="true"/>
+        </many-to-one>
+        <property generated="never" lazy="false" name="rating" optimistic-lock="true" type="int" unique="false">
+            <column name="rating" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="headline" optimistic-lock="true" type="string" unique="false">
+            <column length="128" name="headline" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="comment" optimistic-lock="true" type="string" unique="false">
+            <column length="500" name="comment" not-null="true"/>
+        </property>
+        <property generated="never" lazy="false" name="reviewTime" optimistic-lock="true" type="timestamp" unique="false">
+            <column length="19" name="review_time" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
